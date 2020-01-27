@@ -18,16 +18,13 @@ class TaskController extends Controller
         return $tasks;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //formulario
 
-    }
+
+
+
+
+    /* 
+esta funcion capta todos los datos del formulario y lo guarda en $request */
 
     /**
      * Store a newly created resource in storage.
@@ -37,21 +34,16 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'keep' => 'required'
+        ]);
+
+        Task::create($request->all());
+
+        return;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $task = Task::findOrFail($id);
-        //formulario
-        return $task;
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -62,7 +54,12 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //  
+        $this->validate($request,[
+            'keep'=>'required',
+        ]);
+        /* si todo va bien actualizar */
+        Task::find($id)->update($request->all());
+        return;
     }
 
     /**

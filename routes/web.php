@@ -14,5 +14,6 @@
 Route::get('/', function () {
     return view('dashboard');
 });
-
-Route::resource('tasks','TaskController',['except'=>'show']);
+/* 
+esto es para que el larevel no me pida estos ya que lo haremos con boostrap */
+Route::resource('tasks','TaskController',['except'=>'show','create','edit']);
